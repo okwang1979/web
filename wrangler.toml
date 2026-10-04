@@ -1,0 +1,38 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "maltor-contact"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+
+# 说明：src/site.html 以纯文本形式 import 进 Worker，无需额外静态资源托管。
+# Wrangler 默认规则已包含 **/*.html 的 Text 导入，所以这里不用再写 [[rules]]。
+
+# 开启日志，方便用 `npm run tail` 实时看线上报错
+[observability]
+enabled = true
+
+[vars]
+# 发件人：必须是 Resend 里已验证域名下的地址（maltor.xyz 已验证，可直接用）
+CONTACT_FROM = "Maltor <noreply@maltor.xyz>"
+# 收件人：收到询价邮件的邮箱
+CONTACT_TO = "okwang1979@163.com"
+# 本站主域：该域及其所有子域（maltor.xyz / www. / message. …）自动放行，不用逐个登记
+SITE_DOMAIN = "maltor.xyz"
+# 额外允许的来源，一般是本地开发地址
+ALLOWED_ORIGINS = "http://localhost:8787"
+
+# ---------------------------------------------------------------------------
+# 自定义域名：maltor.xyz 的 NS 已指向 Cloudflare，deploy 时会自动创建 DNS 记录
+# 并签发证书。注意：workers.dev 域名在大陆无法访问（DNS 被污染），
+# 所以必须走下面这两个自定义域才能正常打开。
+# ---------------------------------------------------------------------------
+[[routes]]
+pattern = "maltor.xyz"
+custom_domain = true
+
+[[routes]]
+pattern = "www.maltor.xyz"
+custom_domain = true
+
+[[routes]]
+pattern = "message.maltor.xyz"
+custom_domain = true

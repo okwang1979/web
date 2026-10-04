@@ -1,0 +1,15 @@
+{
+  "name": "maltor-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "maltor.xyz 联系/询价独立站 - Cloudflare Workers + Resend",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "secret": "wrangler secret put RESEND_API_KEY"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

@@ -1,0 +1,12 @@
+# 本地开发用：复制成 .dev.vars 后填入真实值（.dev.vars 已被 git 忽略）
+# 线上不要靠这个文件，用 `npx wrangler secret put RESEND_API_KEY` 写入加密 secret
+
+# Resend API Key（Resend 控制台 -> API Keys -> Create，权限选 Sending access 即可）
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# 本地没验证域名时，可临时用 Resend 提供的 onboarding@resend.dev 发信（只能发给你自己的注册邮箱）
+# CONTACT_FROM=Maltor <onboarding@resend.dev>
+CONTACT_FROM=Maltor <noreply@maltor.xyz>
+
+# 收件邮箱
+CONTACT_TO=okwang1979@163.com
